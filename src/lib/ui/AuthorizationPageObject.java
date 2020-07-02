@@ -1,7 +1,6 @@
 package lib.ui;
 
 import io.appium.java_client.AppiumDriver;
-import lib.ui.factories.DialpadPageObjectFactory;
 
 abstract public class AuthorizationPageObject extends MainPageObject {
     protected static String

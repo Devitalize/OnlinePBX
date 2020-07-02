@@ -2,7 +2,9 @@ package lib;
 
 import io.appium.java_client.AppiumDriver;
 import junit.framework.TestCase;
+import lib.ui.AuthorizationPageObject;
 import lib.ui.ProfilePageObject;
+import lib.ui.factories.AuthorizationPageObjectFactory;
 import lib.ui.factories.ProfilePageObjectFactory;
 
 
@@ -13,7 +15,6 @@ public class CoreTestCase extends TestCase {
     protected void setUp() throws Exception {
      super.setUp();
      driver = Platform.getInstance().getDriver();
-
     }
 
     @Override

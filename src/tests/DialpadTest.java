@@ -36,29 +36,4 @@ public class DialpadTest extends CoreTestCase {
         DialpadPageObject.clickButtonDialpad("*");
         DialpadPageObject.clickButtonDialpad("#");
     }
-
-    
-
-    @Test
-    //Переход по главным страницам
-    public void testOpenPage() {
-        AuthorizationPageObject AuthorizationPageObject = AuthorizationPageObjectFactory.get(driver);
-        AuthorizationPageObject.SuccessfulAuthorization(login, password);
-        AuthorizationPageObject.enablingPermissions();
-
-        NavigationUI NavigationUI = NavigationUIFactory.get(driver);
-        NavigationUI.openPageContacts();
-        NavigationUI.openPageDialpad();
-        NavigationUI.openPageProfile();
-        NavigationUI.openPageHistory();
-        NavigationUI.openPageContacts();
-        NavigationUI.openPageProfile();
-        NavigationUI.openPageContacts();
-        NavigationUI.openPageHistory();
-        NavigationUI.openPageDialpad();
-        NavigationUI.openPageHistory();
-        NavigationUI.openPageProfile();
-        NavigationUI.openPageDialpad();
-        NavigationUI.openPageProfile();
-    }
 }

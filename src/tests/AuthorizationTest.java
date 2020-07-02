@@ -65,7 +65,6 @@ public class AuthorizationTest extends CoreTestCase {
         AuthorizationPageObject.passwordSendKeys(password);
         AuthorizationPageObject.clickStartButton();
         System.out.println("Дописать, когда добавится ошибка" + "\n");
-
     }
 
     @Test
@@ -76,7 +75,6 @@ public class AuthorizationTest extends CoreTestCase {
         AuthorizationPageObject.passwordSendKeys(password);
         AuthorizationPageObject.clickStartButton();
         System.out.println("Дописать, когда добавится ошибка" + "\n");
-
     }
 
 }
