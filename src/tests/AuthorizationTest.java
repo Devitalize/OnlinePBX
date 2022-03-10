@@ -2,79 +2,87 @@ package tests;
 
 import lib.CoreTestCase;
 import lib.ui.AuthorizationPageObject;
-import lib.ui.DialpadPageObject;
 import lib.ui.factories.AuthorizationPageObjectFactory;
-import lib.ui.factories.DialpadPageObjectFactory;
 import org.junit.Test;
 
 
 public class AuthorizationTest extends CoreTestCase {
-    String login = "100@test8test.onpbx.ru";
+    String login = "100@test8test8.test.onpbx.ru";
     String password = "556898";
 
 
     @Test
-    //Успешная авторизация
-    public void testSuccessfulAuthorization()  {
+    //Успешная авторизация !!!!!!!ДОПИСАТЬ
+    public void testSuccessfulAuthorization() {
         AuthorizationPageObject AuthorizationPageObject = AuthorizationPageObjectFactory.get(driver);
 
         AuthorizationPageObject.loginSendKeys(login);
         AuthorizationPageObject.passwordSendKeys(password);
         AuthorizationPageObject.clickStartButton();
         AuthorizationPageObject.enablingPermissions();
+        System.out.println("ДОПИСАТЬ");
 
-        DialpadPageObject DialpadPageObject = DialpadPageObjectFactory.get(driver);
-        DialpadPageObject.presenceGreenCallButton();
     }
 
     @Test
-    //Ошибка при неверном пароле   !!!!!!!!!!!!!!!!!!!!Дописать, когда добавится ошибка или айдишник
-    public void testIncorrectPassword(){
+    //Ошибка при неверном пароле
+    public void testIncorrectPassword() {
         AuthorizationPageObject AuthorizationPageObject = AuthorizationPageObjectFactory.get(driver);
         AuthorizationPageObject.loginSendKeys(login);
         AuthorizationPageObject.passwordSendKeys("xfbxfb");
         AuthorizationPageObject.clickStartButton();
-        System.out.println("Дописать, когда добавится ошибка" + "\n");
+
+        AuthorizationPageObject.assertAuthorizationsTextError("Некорректный пароль");
     }
 
     @Test
-    //Ошибка при неверном логине   !!!!!!!!!!!!!!!!!!!!Дописать, когда добавится ошибка или айдишник
-    public void testIncorrectLogin(){
+    //Ошибка при неверном логине
+    public void testIncorrectLogin() {
         AuthorizationPageObject AuthorizationPageObject = AuthorizationPageObjectFactory.get(driver);
         AuthorizationPageObject.loginSendKeys("grsrfgnpbx.ru");
         AuthorizationPageObject.passwordSendKeys(password);
         AuthorizationPageObject.clickStartButton();
-        System.out.println("Дописать, когда добавится ошибка" + "\n");
+        AuthorizationPageObject.assertAuthorizationsTextError("Некорректный SIP-id");
 
     }
 
     @Test
-    //Ошибка при пустом пароле   !!!!!!!!!!!!!!!!!!!!Дописать, когда добавится ошибка или айдишник
-    public void testEmptyPassword(){
+    //Ошибка при пустом пароле
+    public void testEmptyPassword() {
         AuthorizationPageObject AuthorizationPageObject = AuthorizationPageObjectFactory.get(driver);
         AuthorizationPageObject.loginSendKeys(login);
         AuthorizationPageObject.clickStartButton();
-        System.out.println("Дописать, когда добавится ошибка" + "\n");
+        AuthorizationPageObject.assertAuthorizationsTextError("Поле не заполнено");
 
     }
 
     @Test
-    //Ошибка при пустом логине   !!!!!!!!!!!!!!!!!!!!Дописать, когда добавится ошибка или айдишник
-    public void testEmptyLogin(){
+    //Ошибка при пустом логине
+    public void testEmptyLogin() {
         AuthorizationPageObject AuthorizationPageObject = AuthorizationPageObjectFactory.get(driver);
         AuthorizationPageObject.passwordSendKeys(password);
         AuthorizationPageObject.clickStartButton();
-        System.out.println("Дописать, когда добавится ошибка" + "\n");
+        AuthorizationPageObject.assertAuthorizationsTextError("Поле не заполнено");
     }
 
     @Test
-    //Пользователя нет на домене   !!!!!!!!!!!!!!!!!!!!Дописать, когда добавится ошибка или айдишник
-    public void testNonexistentLogin(){
+    //Пользователя нет на домене
+    public void testNonexistentLogin() {
         AuthorizationPageObject AuthorizationPageObject = AuthorizationPageObjectFactory.get(driver);
-        AuthorizationPageObject.loginSendKeys("398@test8test.onpbx.ru");
+        AuthorizationPageObject.loginSendKeys("398@test8test8.test.onpbx.ru");
         AuthorizationPageObject.passwordSendKeys(password);
         AuthorizationPageObject.clickStartButton();
-        System.out.println("Дописать, когда добавится ошибка" + "\n");
+        AuthorizationPageObject.assertAuthorizationsTextError("Некорректный логин пользователя");
     }
 
+    @Test
+    //Отсутствует интернет соединение
+    public void testNoInternetConnection() {
+        AuthorizationPageObject AuthorizationPageObject = AuthorizationPageObjectFactory.get(driver);
+        AuthorizationPageObject.loginSendKeys(login);
+        AuthorizationPageObject.passwordSendKeys(password);
+        AuthorizationPageObject.clickStartButton();
+        AuthorizationPageObject.assertAuthorizationsTextError("Отсутствует подключение к интернету");
+
+    }
 }

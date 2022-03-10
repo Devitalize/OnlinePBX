@@ -1,6 +1,9 @@
 package lib.ui;
 
 import io.appium.java_client.AppiumDriver;
+import org.openqa.selenium.WebElement;
+
+import static org.junit.Assert.assertEquals;
 
 abstract public class AuthorizationPageObject extends MainPageObject {
     protected static String
@@ -8,7 +11,14 @@ abstract public class AuthorizationPageObject extends MainPageObject {
             PASSWORD,
             START_BUTTON,
             EYE_BUTTON,
-            PERMISSIONS
+            TEXT_ERROR,
+            PERMISSIONS,
+            PERMISSIONS_ALLOW_FOREGROUND_ONLY,
+            PERMISSIONS_ALLOW_CALL,
+            BUTTON_APP_ONPBX,
+            BUTTON_SWITCH_WIDGET,
+            PERMISSIONS_BUTTON_BACK,
+            BUTTON_DO_NOT_SHOW
     ;
 
     public AuthorizationPageObject(AppiumDriver driver) {
@@ -82,6 +92,21 @@ abstract public class AuthorizationPageObject extends MainPageObject {
         );
     }
 
+    //Проверка текста ошибки при неверном вводе логина/пароля
+    public void assertAuthorizationsTextError(String text_error_message){
+        WebElement text_error = this.waitForElementPresent(
+                TEXT_ERROR,
+                "Не найдено поле с ошибкой авторизации",
+                10
+        );
+        String text_attribute_error_message = this.waitForElementAndGetAttribute(TEXT_ERROR,
+                 "text",
+                 "Не найден атрибут text у поля с ошибкой авторизации",
+         10);
+        assertEquals(text_error_message,
+                text_attribute_error_message);
+    }
+
     //Включение разрешений
     public void enablingPermissions(){
         this.waitForElementPresent(
@@ -95,15 +120,76 @@ abstract public class AuthorizationPageObject extends MainPageObject {
                 15
         );
         this.waitForElementPresent(
-                PERMISSIONS,
-                "Не найдена кнопка подтверждения разрешений",
+                PERMISSIONS_ALLOW_FOREGROUND_ONLY,
+                "Не найдена кнопка подтверждения разрешения на запись аудио",
                 15
         );
         this.waitForElementAndClick(
-                PERMISSIONS,
-                "Не удалось кликнуть на подтверждение разрешения. ",
+                PERMISSIONS_ALLOW_FOREGROUND_ONLY,
+                "Не удалось кликнуть на подтверждение разрешения на запись аудио. ",
                 10
         );
+        this.waitForElementPresent(
+                PERMISSIONS_ALLOW_CALL,
+                "Не найдена кнопка подтверждения разрешения на совершение звонков",
+                15
+        );
+        this.waitForElementAndClick(
+                PERMISSIONS_ALLOW_CALL,
+                "Не удалось кликнуть на подтверждение разрешения на совершение звонков. ",
+                10
+        );
+        this.waitForElementPresent(
+                BUTTON_APP_ONPBX,
+                "Не найдено приложение OnlinePBX в списке приложений для предоставление доступа поверх других приложений",
+                15
+        );
+        this.waitForElementAndClick(
+                BUTTON_APP_ONPBX,
+                "Не удалось кликнуть на приложение OnlinePBX в списке приложений для предоставление доступа поверх других приложений. ",
+                10
+        );
+        this.waitForElementPresent(
+                BUTTON_SWITCH_WIDGET,
+                "Не найден чек-бокс для предоставления доступа поверх других приложений",
+                15
+        );
+        this.waitForElementAndClick(
+                BUTTON_SWITCH_WIDGET,
+                "Не удалось кликнуть на чекбокс для предоставление доступа поверх других приложений. ",
+                10
+        );
+        this.waitForElementPresent(
+                PERMISSIONS_BUTTON_BACK,
+                "Не найдена кнопка Назад",
+                15
+        );
+        this.waitForElementAndClick(
+                PERMISSIONS_BUTTON_BACK,
+                "Не удалось кликнуть на кнопку Назад ",
+                10
+        );
+        this.waitForElementPresent(
+                PERMISSIONS_BUTTON_BACK,
+                "Не найдена кнопка Назад",
+                15
+        );
+        this.waitForElementAndClick(
+                PERMISSIONS_BUTTON_BACK,
+                "Не удалось кликнуть на кнопку Назад ",
+                10
+        );
+        this.waitForElementPresent(
+                BUTTON_DO_NOT_SHOW,
+                "Не найдена кнопка Не показывать",
+                15
+        );
+        this.waitForElementAndClick(
+                BUTTON_DO_NOT_SHOW,
+                "Не удалось кликнуть на кнопку Не показывать ",
+                10
+        );
+
     }
 
     //Успешная авторизация
@@ -118,3 +204,4 @@ abstract public class AuthorizationPageObject extends MainPageObject {
         this.clickStartButton();
     }
 }
+

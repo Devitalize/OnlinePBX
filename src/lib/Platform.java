@@ -48,12 +48,12 @@ public class Platform {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", "Android");
-        capabilities.setCapability("deviceName", "AndroidTestDevice");
-        capabilities.setCapability("platformVersion", "8.0");
+        capabilities.setCapability("deviceName", "AND11");
+        capabilities.setCapability("platformVersion", "11.0");
         capabilities.setCapability("automationName", "Appium");
         capabilities.setCapability("appPackage", "com.onlinepbx");
-        capabilities.setCapability("appActivity", ".MainActivity");
-        capabilities.setCapability("app", "C:/Users/888/Desktop/OnlinePBX/apks/1.2.143.apk");
+        capabilities.setCapability("appActivity", ".ui.splash.SplashActivity");
+        capabilities.setCapability("app", "/Users/administrator/AndroidStudioProjects/MyApplication/OnlinePBX/apks/app-debug-phoner.apk");
 
         return capabilities;
     }

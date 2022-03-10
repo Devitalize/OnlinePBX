@@ -6,7 +6,7 @@ import lib.ui.ProfilePageObject;
 public class AndroidProfilePageObject extends ProfilePageObject {
     static {
         EXIT = "xpath://android.widget.TextView[@text='Выход']"; //"xpath://android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.view.ViewGroup[7]";
-        CONFIRM_EXIT = "xpath://android.view.ViewGroup[2]/android.view.ViewGroup/android.view.ViewGroup[2]/android.widget.TextView";
+        CONFIRM_EXIT = "id:android:id/button1";
         CANCEL_EXIT = "xpath://android.widget.TextView[@text='Отмена']";
         DOMAIN = "xpath://android.widget.TextView[@text='{DOMAIN}']";
         SIP_ID = "xpath://android.view.ViewGroup[1]/android.view.ViewGroup/android.widget.ScrollView/android.view.ViewGroup/android.widget.TextView[3]";
